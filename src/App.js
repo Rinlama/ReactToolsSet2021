@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+
+function DumplingComponent() {
+  return "dumpling is available";
+}
 
 function App() {
+  const [food, setFood] = useState("Dumpling");
+
+  const conditionView = () => {
+    if (food === "Dumpling") {
+      return <DumplingComponent />;
+    } else {
+      return "not available";
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input
+        type="text"
+        value={food}
+        onChange={(event) => {
+          const value = event.target.value;
+          setFood(value);
+        }}
+      />
+      {conditionView()}
     </div>
   );
 }
