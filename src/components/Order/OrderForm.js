@@ -1,7 +1,5 @@
 import React from "react";
-import { Button, Card, Row, Col, Form, Alert } from "react-bootstrap";
-import Radio from "../../shared/ui/radio/Radio";
-import CheckBox from "../../shared/ui/checkbox/Checkbox";
+import { Card, Row, Col, Form, Alert } from "react-bootstrap";
 
 const pizzaSizeCollection = [
   {
@@ -109,15 +107,16 @@ function OrderForm(props) {
                         label={d.label}
                         checked={formik.values.size === d.value}
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         value={d.value}
-                        isInvalid={formik.errors.size}
+                        isInvalid={formik.errors.size && formik.touched.size}
                       />
                       <small className="mx-4">{d.description}</small>
                     </div>
                   </Col>
                 ))}
 
-                {formik.errors.size ? (
+                {formik.errors.size && formik.touched.size ? (
                   <Alert variant="danger">{formik.errors.size}</Alert>
                 ) : null}
               </Row>
@@ -132,14 +131,15 @@ function OrderForm(props) {
                     label={d.label}
                     checked={formik.values.crust === d.value}
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     value={d.value}
-                    isInvalid={formik.errors.crust}
+                    isInvalid={formik.errors.crust && formik.touched.crust}
                   />
                   <small className="mx-4">{d.description}</small>
                 </Form.Group>
               </Col>
             ))}
-            {formik.errors.crust ? (
+            {formik.errors.crust && formik.touched.crust ? (
               <Alert variant="danger">{formik.errors.crust}</Alert>
             ) : null}
           </Card.Text>

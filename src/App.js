@@ -1,5 +1,5 @@
 import OrderForm from "./components/Order/OrderForm";
-import { Col, Container, Nav, Row, Form, Button } from "react-bootstrap";
+import { Col, Container, Nav, Row, Form, Button, Card } from "react-bootstrap";
 import React from "react";
 import Summary from "./components/Summary/Summary";
 import { useFormik } from "formik";
@@ -54,17 +54,18 @@ function App() {
         </Nav.Item>
       </Nav>
       <Container className="my-4">
-        <Form onSubmit={formik.handleSubmit}>
-          <Row>
-            <Col md={8}>
-              <OrderForm formik={formik} />
-            </Col>
-            <Col md={4}>
-              <Summary formik={formik} />
-            </Col>
-          </Row>
-
-        </Form>
+        <Card className="shadow-lg p-4">
+          <Form onSubmit={formik.handleSubmit}>
+            <Row>
+              <Col md={8}>
+                <OrderForm formik={formik} />
+              </Col>
+              <Col md={4}>
+                <Summary formik={formik} />
+              </Col>
+            </Row>
+          </Form>
+        </Card>
       </Container>
     </React.Fragment>
   );
